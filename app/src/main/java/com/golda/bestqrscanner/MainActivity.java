@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-
-        setContentView(R.layout.activity_logo);
-
         start = findViewById(R.id.start);
         link = findViewById(R.id.link);
 

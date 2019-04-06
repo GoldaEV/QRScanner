@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 
     <application
@@ -18,17 +18,20 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3602084545548553~3024646952"/>
+            android:value="ca-app-pub-3602084545548553~3024646952" />
 
-        <activity android:name=".LogoActivity">
+        <activity
+            android:name=".LogoActivity"
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ScannerActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ScannerActivity" />
     </application>
 
 </manifest>

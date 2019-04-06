@@ -4,9 +4,10 @@
     <item android:drawable="@color/colorAccent" />
 
     <item>
+        
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_logo" />
     </item>
 
 </layer-list>

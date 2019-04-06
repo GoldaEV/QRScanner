@@ -1,14 +1,13 @@
 package com.golda.bestqrscanner;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
+import android.support.v7.app.AppCompatActivity;
 
-public class LogoActivity extends Activity {
+public class LogoActivity extends AppCompatActivity {
     @Override
-    public void onCreate( Bundle savedInstanceState,PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

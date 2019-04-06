@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -15,7 +16,7 @@ import static com.golda.bestqrscanner.ScannerActivity.EXTRA_QRSTRING;
 
 public class MainActivity extends AppCompatActivity {
     private Button start;
-    private Button link;
+    private TextView link;
     private String result;
 
     private AdView mAdView;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
             }
         });
     }

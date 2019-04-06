@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        extractAndOpenUrls("ggggg");
 
         //Ads
         MobileAds.initialize(this, "ca-app-pub-3602084545548553~3024646952");

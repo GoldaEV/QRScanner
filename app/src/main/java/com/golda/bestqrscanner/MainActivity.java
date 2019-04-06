@@ -23,15 +23,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Ads
         MobileAds.initialize(this, "ca-app-pub-3602084545548553~3024646952");
-
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
         setContentView(R.layout.activity_logo);
 
-        start = (Button) findViewById(R.id.start);
-        link = (Button) findViewById(R.id.link);
+        start = findViewById(R.id.start);
+        link = findViewById(R.id.link);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void startScanner(){
-        Intent intent = new Intent(this,)
+        Intent intent = new Intent(this, ScannerActivity.class);
         startActivityForResult(intent,requestCode);
     }
 

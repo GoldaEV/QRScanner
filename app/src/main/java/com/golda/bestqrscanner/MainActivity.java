@@ -20,6 +20,7 @@ import static com.golda.bestqrscanner.ScannerActivity.EXTRA_QRSTRING;
 
 public class MainActivity extends AppCompatActivity {
     private Button start;
+    private Button load;
     private TextView link;
     private String result;
     private AdView mAdView;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
         start = findViewById(R.id.start);
+        load = findViewById(R.id.load);
+        load.setVisibility(View.INVISIBLE);
         link = findViewById(R.id.link);
 
         start.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        link.setOnClickListener(new View.OnClickListener() {
+        load.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (result != null) {
@@ -55,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        link.setActivated(false);
     }
 
 
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 result = data.getStringExtra(EXTRA_QRSTRING);
                 link.setText(result);
-                link.setActivated(true);
+                load.setVisibility(View.VISIBLE);
             }
 
         }

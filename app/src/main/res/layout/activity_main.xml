@@ -21,8 +21,9 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/button_background"
         android:text="@string/start"
-        android:textSize="21sp"
-        android:textColor="@color/colorAccent"/>
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="21sp" />
 
 
     <TextView
@@ -30,10 +31,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
+        android:maxLength="20"
         android:text="sad"
         android:textSize="20dp" />
 
+    <Button
+        android:id="@+id/load"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:text="@string/load"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="21sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

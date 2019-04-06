@@ -33,7 +33,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:maxLength="20"
-        android:text="sad"
         android:textSize="20dp" />
 
     <Button
@@ -43,7 +42,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_background"
-        android:text="@string/load"
+        android:text="@string/go"
         android:textAllCaps="false"
         android:textColor="@color/colorAccent"
         android:textSize="21sp" />

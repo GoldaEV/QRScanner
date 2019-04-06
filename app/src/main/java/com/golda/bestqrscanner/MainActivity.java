@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Button start;
     private TextView link;
     private String result;
-
     private AdView mAdView;
+    static final int REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +62,29 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        result = data.getStringExtra(EXTRA_QRSTRING);
-        link.setText(result);
-        link.setActivated(true);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                result = data.getStringExtra(EXTRA_QRSTRING);
+                link.setText(result);
+                link.setActivated(true);
+            }
+
+        }
 
     }
 
 
     private void startScanner() {
         Intent intent = new Intent(this, ScannerActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(intent, REQUEST_CODE);
     }
-    
-    public void extractAndOpenUrls(String text)
-    {
+
+    public void extractAndOpenUrls(String text) {
         String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
         Pattern urlPattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
         Matcher urlMatcher = urlPattern.matcher(text);
-        
-        if (urlMatcher.find())
-        {
+
+        if (urlMatcher.find()) {
             String url = text.substring(urlMatcher.start(0), urlMatcher.end(0));
             Intent urlIntent = new Intent(Intent.ACTION_VIEW);
             urlIntent.setData(Uri.parse(url));

@@ -1,6 +1,7 @@
 package com.golda.bestqrscanner;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.golda.bestqrscanner.ScannerActivity.EXTRA_QRSTRING;
 
@@ -49,9 +53,12 @@ public class MainActivity extends AppCompatActivity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (result != null) {
+                    extractAndOpenUrls(result);
+                }
             }
         });
+        link.setActivated(false);
     }
 
 
@@ -60,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         result = data.getStringExtra(EXTRA_QRSTRING);
         link.setText(result);
+        link.setActivated(true);
 
     }
 
@@ -68,6 +76,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ScannerActivity.class);
         startActivityForResult(intent, 1);
     }
-
+    
+    public void extractAndOpenUrls(String text)
+    {
+        String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+        Pattern urlPattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
+        Matcher urlMatcher = urlPattern.matcher(text);
+        
+        if (urlMatcher.find())
+        {
+            String url = text.substring(urlMatcher.start(0), urlMatcher.end(0));
+            Intent urlIntent = new Intent(Intent.ACTION_VIEW);
+            urlIntent.setData(Uri.parse(url));
+            startActivity(urlIntent);
+        }
+    }
 
 }

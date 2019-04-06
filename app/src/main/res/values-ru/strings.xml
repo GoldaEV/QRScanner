@@ -2,5 +2,5 @@
 <resources>
     <string name="app_name">Лучший QR сканер</string>
     <string name="start">Сканировать</string>
-    <string name="load">Загрузить</string> 
+    <string name="load">Загрузить</string>
 </resources>

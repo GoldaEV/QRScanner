@@ -1,5 +1,6 @@
 package com.golda.bestqrscanner;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -8,11 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        extractAndOpenUrls("ggggg");
 
         //Ads
         MobileAds.initialize(this, "ca-app-pub-3602084545548553~3024646952");
@@ -91,6 +95,27 @@ public class MainActivity extends AppCompatActivity {
             Intent urlIntent = new Intent(Intent.ACTION_VIEW);
             urlIntent.setData(Uri.parse(url));
             startActivity(urlIntent);
+        }
+        
+        Scanner s = new Scanner(text);
+    
+        String email = s.findInLine(Pattern.compile("MATMSG:TO:(.*);SUB"));
+        if (email != null) {
+            email = (String) email.subSequence(10, email.length() - 4);
+    
+            s.close();
+    
+            String mailto = "mailto:" + Uri.encode(email);
+            
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse(mailto));
+    
+            try {
+                startActivity(emailIntent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(this, "No apps for sending emails",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

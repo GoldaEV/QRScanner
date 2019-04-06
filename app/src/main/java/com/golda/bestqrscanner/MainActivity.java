@@ -11,10 +11,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import static com.golda.bestqrscanner.ScannerActivity.EXTRA_QRSTRING;
+
 public class MainActivity extends AppCompatActivity {
     private Button start;
     private Button link;
-    private int requestCode = 1;
+    private String result;
 
     private AdView mAdView;
 
@@ -43,30 +45,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                
             }
         });
-    }
-
-
-
-    private void startScanner(){
-        Intent intent = new Intent(this, ScannerActivity.class);
-        startActivityForResult(intent,requestCode);
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        result = data.getStringExtra(EXTRA_QRSTRING);
+        link.setText(result);
 
     }
 
+
+    private void startScanner() {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivityForResult(intent, 1);
+    }
 
 
 }
